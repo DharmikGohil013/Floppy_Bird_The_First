@@ -20,7 +20,7 @@ public class new_bird : MonoBehaviour
     {
         if(Input.GetKeyDown(KeyCode.Space) && birdalive)
         {
-            myrigidbody.velocity = Vector2.up * flapstrnth;
+            myrigidbody.linearVelocity = Vector2.up * flapstrnth;
         }
         
     }
