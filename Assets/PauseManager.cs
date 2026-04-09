@@ -5,6 +5,16 @@ using UnityEngine;
 public class PauseManager : MonoBehaviour
 {
     private bool isPaused = false;
+    public bool slowMotionEnabled = false;
+    public float slowMotionScale = 0.5f;
+
+    void Update()
+    {
+        if(Input.GetKeyDown(KeyCode.LeftShift))
+        {
+            ToggleSlowMotion();
+        }
+    }
 
     public void TogglePause()
     {
@@ -15,6 +25,20 @@ public class PauseManager : MonoBehaviour
         else
         {
             PauseGame();
+        }
+    }
+
+    public void ToggleSlowMotion()
+    {
+        if(slowMotionEnabled)
+        {
+            Time.timeScale = 1f;
+            slowMotionEnabled = false;
+        }
+        else
+        {
+            Time.timeScale = slowMotionScale;
+            slowMotionEnabled = true;
         }
     }
 
@@ -29,6 +53,7 @@ public class PauseManager : MonoBehaviour
     {
         Time.timeScale = 1f; // Resume the game by setting the time scale back to 1
         isPaused = false;
+        slowMotionEnabled = false;
         // Additional logic to hide pause menu, unmute audio, etc., can be added here.
     }
 }
